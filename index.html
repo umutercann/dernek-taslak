@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gayrettepe Derneği – Taslak</title>
+<meta name="description" content="Gayrettepe Derneği web sitesi için örnek ana sayfa taslağı.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf7f2; --surface:#ffffff; --ink:#1f2a2e; --muted:#5b676b;
+    --line:#e6e0d6; --brand:#1d5c4d; --brand-ink:#ffffff; --brand-soft:#e3efe9;
+    --accent:#c8692b; --accent-soft:#f8e7da;
+    --radius:14px; --wrap:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Figtree",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.15;margin:0 0 .5em;letter-spacing:-.01em}
+  h1{font-size:clamp(2.1rem,5vw,3.4rem)}
+  h2{font-size:clamp(1.6rem,3.2vw,2.2rem)}
+  h3{font-size:1.2rem}
+  p{margin:0 0 1em}
+  a{color:var(--brand)}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.6em}
+  .btn{display:inline-flex;align-items:center;gap:.5em;padding:.8em 1.3em;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid transparent;cursor:pointer;font:inherit;font-weight:600}
+  .btn-primary{background:var(--brand);color:var(--brand-ink)}
+  .btn-primary:hover{background:#174b3f}
+  .btn-ghost{border-color:var(--brand);color:var(--brand);background:transparent}
+  .btn-ghost:hover{background:var(--brand-soft)}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+  /* taslak şeridi */
+  .draft{background:var(--ink);color:#f3efe8;font-size:.85rem;text-align:center;padding:.5em 1em}
+
+  /* header */
+  header{position:sticky;top:0;z-index:20;background:rgba(250,247,242,.94);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:.6em;text-decoration:none;color:var(--ink)}
+  .logo-mark{width:40px;height:40px;border-radius:10px;background:var(--brand);display:grid;place-items:center}
+  .logo-text{font-family:"Fraunces",serif;font-weight:600;font-size:1.15rem;line-height:1.1}
+  .logo-text small{display:block;font-family:"Figtree",sans-serif;font-weight:500;font-size:.72rem;color:var(--muted);letter-spacing:.04em}
+  .menu{display:flex;gap:1.6em;list-style:none;margin:0;padding:0;align-items:center}
+  .menu a{text-decoration:none;color:var(--ink);font-weight:500}
+  .menu a:hover{color:var(--brand)}
+  .menu-toggle{display:none;background:none;border:0;padding:8px;cursor:pointer;color:var(--ink)}
+  @media (max-width:860px){
+    .menu-toggle{display:block}
+    .menu{position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--bg);border-bottom:1px solid var(--line);display:none;padding:8px 20px 16px}
+    .menu.open{display:flex}
+    .menu li a{display:block;padding:12px 0;border-bottom:1px solid var(--line)}
+    .menu li:last-child a{border:0;margin-top:12px;text-align:center;justify-content:center}
+  }
+
+  /* hero */
+  .hero{padding:72px 0 56px}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  .hero p.lead{font-size:1.15rem;color:var(--muted);max-width:34em}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:1.6em}
+  .hero-art{position:relative;aspect-ratio:4/3.4;border-radius:22px;overflow:hidden;background:var(--brand-soft)}
+  .hero-art svg{width:100%;height:100%}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;max-width:520px}
+  .stat b{display:block;font-family:"Fraunces",serif;font-size:1.9rem;color:var(--brand);line-height:1}
+  .stat span{font-size:.88rem;color:var(--muted)}
+  @media (max-width:860px){.hero{padding:44px 0 36px}.hero-grid{grid-template-columns:1fr;gap:32px}}
+
+  /* duyuru şeridi */
+  .notice{background:var(--accent-soft);border-radius:var(--radius);padding:18px 22px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+  .notice p{margin:0}
+  .notice strong{color:var(--accent)}
+
+  section.block{padding:72px 0}
+  section.alt{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .head{max-width:640px;margin-bottom:36px}
+  .head p{color:var(--muted)}
+
+  /* hakkımızda */
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .values{display:grid;gap:14px}
+  .value{display:flex;gap:14px;padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg)}
+  .value .ic{flex:0 0 40px;height:40px;border-radius:10px;background:var(--brand-soft);display:grid;place-items:center;color:var(--brand)}
+  .value h3{margin:0 0 .2em;font-size:1.05rem}
+  .value p{margin:0;color:var(--muted);font-size:.95rem}
+  @media (max-width:860px){.about{grid-template-columns:1fr;gap:28px}}
+
+  /* faaliyetler */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+  .card .pic{aspect-ratio:16/10}
+  .card .body{padding:20px;flex:1;display:flex;flex-direction:column}
+  .card p{color:var(--muted);font-size:.95rem}
+  .card a{margin-top:auto;font-weight:600;text-decoration:none}
+  .tag{display:inline-block;font-size:.75rem;font-weight:600;color:var(--brand);background:var(--brand-soft);padding:.2em .7em;border-radius:999px;margin-bottom:.8em}
+  @media (max-width:900px){.cards{grid-template-columns:1fr 1fr}}
+  @media (max-width:600px){.cards{grid-template-columns:1fr}}
+
+  /* haber + etkinlik */
+  .two{display:grid;grid-template-columns:1.3fr 1fr;gap:40px}
+  .news{list-style:none;margin:0;padding:0}
+  .news li{padding:18px 0;border-bottom:1px solid var(--line)}
+  .news li:first-child{padding-top:0}
+  .news time{font-size:.82rem;color:var(--muted);font-weight:500}
+  .news h3{margin:.25em 0 .3em;font-size:1.12rem}
+  .news h3 a{color:var(--ink);text-decoration:none}
+  .news h3 a:hover{color:var(--brand)}
+  .news p{margin:0;color:var(--muted);font-size:.95rem}
+  .events{display:grid;gap:12px}
+  .event{display:flex;gap:16px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
+  .date{flex:0 0 58px;text-align:center;background:var(--brand);color:#fff;border-radius:10px;padding:8px 0;line-height:1.1}
+  .date b{display:block;font-family:"Fraunces",serif;font-size:1.5rem}
+  .date span{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+  .event h3{margin:0;font-size:1rem;font-family:"Figtree",sans-serif;font-weight:600}
+  .event p{margin:0;font-size:.88rem;color:var(--muted)}
+  @media (max-width:860px){.two{grid-template-columns:1fr}}
+
+  /* katıl */
+  .join{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
+  .ways{display:grid;gap:14px;margin-top:24px}
+  .way{padding:18px 20px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface)}
+  .way h3{font-size:1.05rem;margin-bottom:.25em}
+  .way p{margin:0;color:var(--muted);font-size:.95rem}
+  .iban{font-family:ui-monospace,Menlo,monospace;font-size:.9rem;background:var(--bg);border:1px dashed var(--line);padding:8px 10px;border-radius:8px;margin-top:10px;word-break:break-all}
+  form{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px}
+  .field{margin-bottom:16px}
+  label{display:block;font-weight:600;font-size:.92rem;margin-bottom:6px}
+  input,select,textarea{width:100%;font:inherit;font-size:1rem;padding:12px 14px;border:1px solid #d6cfc3;border-radius:10px;background:#fff;color:var(--ink)}
+  textarea{min-height:96px;resize:vertical}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .check{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--muted);font-weight:400}
+  .check input{width:auto;margin-top:4px}
+  .form-note{font-size:.85rem;color:var(--muted);margin-top:12px}
+  .ok{display:none;background:var(--brand-soft);color:var(--brand);padding:12px 14px;border-radius:10px;margin-top:14px;font-weight:600}
+  @media (max-width:860px){.join{grid-template-columns:1fr;gap:28px}}
+  @media (max-width:520px){.row{grid-template-columns:1fr}form{padding:20px}}
+
+  /* iletişim + footer */
+  .contact{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .contact div{padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+  .contact h3{font-size:1rem;font-family:"Figtree",sans-serif;font-weight:600;margin-bottom:.3em}
+  .contact p{margin:0;color:var(--muted)}
+  @media (max-width:760px){.contact{grid-template-columns:1fr}}
+  footer{background:var(--ink);color:#cfd6d4;padding:40px 0;font-size:.9rem}
+  footer .f{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  footer a{color:#fff;text-decoration:none}
+  footer ul{list-style:none;padding:0;margin:0;display:flex;gap:18px;flex-wrap:wrap}
+
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="draft">Bu sayfa bir <strong>taslak tasarımdır</strong>. Metinler, rakamlar ve etkinlikler temsilidir; gerçek içerikle değiştirilecektir.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Ana sayfa">
+      <span class="logo-mark" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg>
+      </span>
+      <span class="logo-text">Gayrettepe Derneği<small>DAYANIŞMA · KÜLTÜR · KOMŞULUK</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="menu" id="menu">
+      <li><a href="#hakkimizda">Hakkımızda</a></li>
+      <li><a href="#faaliyetler">Faaliyetler</a></li>
+      <li><a href="#duyurular">Duyurular</a></li>
+      <li><a href="#iletisim">İletişim</a></li>
+      <li><a class="btn btn-primary" href="#katil">Bize katılın</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Gayrettepe'de birlikte</div>
+        <h1>Komşuluğu büyüten, iyiliği paylaşan bir dernek</h1>
+        <p class="lead">Mahallemizde dayanışmayı güçlendirmek, çocuklara ve gençlere destek olmak, kültürel etkinliklerle insanları bir araya getirmek için çalışıyoruz.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#katil">Gönüllü olun</a>
+          <a class="btn btn-ghost" href="#bagis">Bağış yapın</a>
+        </div>
+        <div class="stats" aria-label="Rakamlarla dernek (temsili)">
+          <div class="stat"><b>120+</b><span>üye ve gönüllü</span></div>
+          <div class="stat"><b>45</b><span>burslu öğrenci</span></div>
+          <div class="stat"><b>30</b><span>etkinlik / yıl</span></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 400 340" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="340" fill="#e3efe9"/>
+          <circle cx="320" cy="70" r="38" fill="#f3c9a6"/>
+          <path d="M0 250 Q100 210 200 240 T400 225 V340 H0Z" fill="#cfe3d9"/>
+          <g fill="#1d5c4d">
+            <rect x="40" y="130" width="70" height="130" rx="4"/>
+            <rect x="120" y="95" width="60" height="165" rx="4"/>
+            <rect x="190" y="150" width="80" height="110" rx="4"/>
+            <rect x="280" y="115" width="70" height="145" rx="4"/>
+          </g>
+          <g fill="#faf7f2" opacity=".9">
+            <rect x="52" y="148" width="14" height="16" rx="2"/><rect x="84" y="148" width="14" height="16" rx="2"/>
+            <rect x="52" y="180" width="14" height="16" rx="2"/><rect x="84" y="180" width="14" height="16" rx="2"/>
+            <rect x="132" y="112" width="14" height="16" rx="2"/><rect x="156" y="112" width="14" height="16" rx="2"/>
+            <rect x="132" y="144" width="14" height="16" rx="2"/><rect x="156" y="144" width="14" height="16" rx="2"/>
+            <rect x="132" y="176" width="14" height="16" rx="2"/><rect x="156" y="176" width="14" height="16" rx="2"/>
+            <rect x="204" y="168" width="16" height="16" rx="2"/><rect x="240" y="168" width="16" height="16" rx="2"/>
+            <rect x="292" y="132" width="14" height="16" rx="2"/><rect x="324" y="132" width="14" height="16" rx="2"/>
+            <rect x="292" y="164" width="14" height="16" rx="2"/><rect x="324" y="164" width="14" height="16" rx="2"/>
+          </g>
+          <path d="M0 268 Q100 236 200 262 T400 250 V340 H0Z" fill="#b9d6c8"/>
+          <g fill="#c8692b">
+            <circle cx="150" cy="268" r="9"/><rect x="142" y="278" width="16" height="30" rx="7"/>
+            <circle cx="178" cy="272" r="7"/><rect x="172" y="280" width="12" height="24" rx="6"/>
+          </g>
+          <g fill="#1f2a2e">
+            <circle cx="226" cy="266" r="9"/><rect x="218" y="276" width="16" height="32" rx="7"/>
+          </g>
+          <path d="M60 300 q20-24 40 0" stroke="#1d5c4d" stroke-width="3" fill="none"/>
+          <path d="M310 300 q16-20 32 0" stroke="#1d5c4d" stroke-width="3" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="notice" role="note">
+      <p><strong>Duyuru:</strong> 2026–2027 eğitim yılı burs başvuruları 15 Aralık'a kadar açık.</p>
+      <a class="btn btn-ghost" href="#duyurular">Ayrıntılar</a>
+    </div>
+  </div>
+
+  <section class="block" id="hakkimizda">
+    <div class="wrap about">
+      <div>
+        <div class="eyebrow">Hakkımızda</div>
+        <h2>Gönüllülerle kurulan, şeffaf çalışan bir topluluk</h2>
+        <p>Derneğimiz, Gayrettepe ve çevresinde yaşayan, çalışan komşuların bir araya gelmesiyle kuruldu. Amacımız mahallede birbirini tanıyan, ihtiyacı olana el uzatan bir yaşam kültürünü canlı tutmak.</p>
+        <p>Tüm faaliyetlerimizi gönüllülerimizin emeği ve üyelerimizin desteğiyle yürütüyor, yıllık faaliyet ve gelir-gider raporlarımızı herkesle paylaşıyoruz.</p>
+        <a href="#iletisim">Yönetim kurulu ve tüzük →</a>
+      </div>
+      <div class="values">
+        <div class="value"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg></span><div><h3>Dayanışma</h3><p>İhtiyaç sahibi ailelere gıda, kırtasiye ve kış yardımı.</p></div></div>
+        <div class="value"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l10-4 10 4-10 4z"/><path d="M6 9v5c0 1.7 2.7 3 6 3s6-1.3 6-3V9"/></svg></span><div><h3>Eğitim</h3><p>Öğrencilere burs, etüt ve rehberlik desteği.</p></div></div>
+        <div class="value"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M15 20c0-2.2 1.3-4.2 3.2-5"/></svg></span><div><h3>Komşuluk</h3><p>Söyleşiler, geziler ve mahalle buluşmaları.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="faaliyetler">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Faaliyetler</div>
+        <h2>Neler yapıyoruz?</h2>
+        <p>Yıl boyunca süren projelerimizden bazıları. Her birine gönüllü olarak katılabilirsiniz.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="pic" aria-hidden="true"><svg viewBox="0 0 320 200" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><rect width="320" height="200" fill="#e3efe9"/><rect x="90" y="60" width="140" height="96" rx="6" fill="#1d5c4d"/><rect x="104" y="74" width="54" height="68" rx="3" fill="#faf7f2"/><rect x="162" y="74" width="54" height="68" rx="3" fill="#faf7f2"/><path d="M160 60v96" stroke="#e3efe9" stroke-width="4"/><circle cx="250" cy="52" r="16" fill="#f3c9a6"/></svg></div>
+          <div class="body"><span class="tag">Eğitim</span><h3>Burs ve etüt programı</h3><p>Ortaokul ve lise öğrencilerine aylık burs, hafta sonu ders etütleri ve üniversite tercih rehberliği.</p><a href="#katil">Destek olun →</a></div>
+        </article>
+        <article class="card">
+          <div class="pic" aria-hidden="true"><svg viewBox="0 0 320 200" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><rect width="320" height="200" fill="#f8e7da"/><rect x="100" y="80" width="120" height="80" rx="8" fill="#c8692b"/><path d="M100 104h120" stroke="#f8e7da" stroke-width="4"/><path d="M150 80v-14a10 10 0 0 1 20 0v14" stroke="#c8692b" stroke-width="6" fill="none"/><circle cx="72" cy="56" r="12" fill="#1d5c4d" opacity=".25"/></svg></div>
+          <div class="body"><span class="tag">Dayanışma</span><h3>Kış dayanışma kampanyası</h3><p>Mahallemizdeki ailelere mont, bot ve gıda kolisi ulaştırıyoruz. Bağışlar Aralık sonuna kadar toplanıyor.</p><a href="#bagis">Bağış yapın →</a></div>
+        </article>
+        <article class="card">
+          <div class="pic" aria-hidden="true"><svg viewBox="0 0 320 200" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><rect width="320" height="200" fill="#e9e4f0" /><rect width="320" height="200" fill="#e3efe9"/><rect x="70" y="120" width="180" height="10" rx="5" fill="#1d5c4d"/><circle cx="110" cy="98" r="14" fill="#c8692b"/><circle cx="160" cy="92" r="16" fill="#1f2a2e"/><circle cx="210" cy="98" r="14" fill="#1d5c4d"/><path d="M60 60h200" stroke="#1d5c4d" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/></svg></div>
+          <div class="body"><span class="tag">Kültür</span><h3>Mahalle söyleşileri</h3><p>Her ay farklı bir konuğu ağırladığımız, herkese açık söyleşi ve çay buluşmaları.</p><a href="#duyurular">Takvime bakın →</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="duyurular">
+    <div class="wrap two">
+      <div>
+        <div class="eyebrow">Duyurular</div>
+        <h2>Haberler</h2>
+        <ul class="news">
+          <li><time datetime="2026-11-10">10 Kasım 2026</time><h3><a href="#">Burs başvuruları başladı</a></h3><p>2026–2027 eğitim yılı için burs başvuru formu ve gerekli belgeler.</p></li>
+          <li><time datetime="2026-10-29">29 Ekim 2026</time><h3><a href="#">Cumhuriyet Bayramı buluşmamız</a></h3><p>Bayram sabahı düzenlediğimiz kahvaltıdan kareler ve teşekkürler.</p></li>
+          <li><time datetime="2026-10-05">5 Ekim 2026</time><h3><a href="#">Olağan genel kurul toplantısı yapıldı</a></h3><p>Yeni yönetim kurulumuz belirlendi; faaliyet raporu yayımlandı.</p></li>
+        </ul>
+      </div>
+      <div>
+        <div class="eyebrow">Takvim</div>
+        <h2>Yaklaşan etkinlikler</h2>
+        <div class="events">
+          <div class="event"><div class="date"><b>22</b><span>Kas</span></div><div><h3>Mahalle söyleşisi: Gayrettepe'nin dünü</h3><p>Cumartesi 14.00 · Dernek lokali</p></div></div>
+          <div class="event"><div class="date"><b>06</b><span>Ara</span></div><div><h3>Kış kampanyası koli hazırlığı</h3><p>Cumartesi 11.00 · Gönüllü buluşması</p></div></div>
+          <div class="event"><div class="date"><b>20</b><span>Ara</span></div><div><h3>Bursiyer öğrencilerle yıl sonu</h3><p>Cumartesi 15.00 · Kültür merkezi</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="katil">
+    <div class="wrap join">
+      <div>
+        <div class="eyebrow">Bize katılın</div>
+        <h2>Siz de bir parçası olun</h2>
+        <p>Üye olarak, gönüllü olarak ya da bağışla derneğimize destek olabilirsiniz.</p>
+        <div class="ways">
+          <div class="way"><h3>Üyelik</h3><p>Yıllık aidatla derneğin karar süreçlerine katılın.</p></div>
+          <div class="way"><h3>Gönüllülük</h3><p>Etüt, etkinlik ya da kampanya ekiplerimizde yer alın.</p></div>
+          <div class="way" id="bagis"><h3>Bağış</h3><p>Banka havalesiyle bağış yapabilirsiniz. Açıklamaya "Bağış" yazmanız yeterli.</p><div class="iban">TR00 0000 0000 0000 0000 0000 00 (örnek)</div></div>
+        </div>
+      </div>
+      <form id="form" novalidate>
+        <h3 style="font-size:1.35rem">Başvuru formu</h3>
+        <div class="row">
+          <div class="field"><label for="ad">Ad soyad</label><input id="ad" name="ad" autocomplete="name" required></div>
+          <div class="field"><label for="tel">Telefon</label><input id="tel" name="tel" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="field"><label for="eposta">E-posta</label><input id="eposta" name="eposta" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="tur">Başvuru türü</label>
+          <select id="tur" name="tur"><option>Gönüllü olmak istiyorum</option><option>Üye olmak istiyorum</option><option>Burs başvurusu hakkında bilgi</option><option>Diğer</option></select>
+        </div>
+        <div class="field"><label for="mesaj">Mesajınız</label><textarea id="mesaj" name="mesaj"></textarea></div>
+        <label class="check"><input type="checkbox" required> Kişisel verilerimin başvurumun değerlendirilmesi amacıyla işlenmesine ilişkin aydınlatma metnini okudum.</label>
+        <div style="margin-top:18px"><button class="btn btn-primary" type="submit">Gönder</button></div>
+        <p class="form-note">Taslakta form hiçbir yere gönderilmez.</p>
+        <div class="ok" id="ok" role="status">Teşekkürler! Başvurunuz bize ulaştı (örnek).</div>
+      </form>
+    </div>
+  </section>
+
+  <section class="block" id="iletisim">
+    <div class="wrap">
+      <div class="head"><div class="eyebrow">İletişim</div><h2>Bize ulaşın</h2></div>
+      <div class="contact">
+        <div><h3>Adres</h3><p>Gayrettepe Mah., Şişli / İstanbul<br>(örnek adres)</p></div>
+        <div><h3>E-posta</h3><p><a href="mailto:gayrettepedernek@gmail.com">gayrettepedernek@gmail.com</a></p></div>
+        <div><h3>Lokal saatleri</h3><p>Hafta içi 18.00–21.00<br>Cumartesi 10.00–17.00</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap f">
+    <div>© 2026 Gayrettepe Derneği · Taslak tasarım</div>
+    <ul><li><a href="#hakkimizda">Hakkımızda</a></li><li><a href="#">KVKK aydınlatma metni</a></li><li><a href="#">Tüzük</a></li></ul>
+  </div>
+</footer>
+
+<script>
+  const t=document.querySelector('.menu-toggle'),m=document.getElementById('menu');
+  t.addEventListener('click',()=>{const o=m.classList.toggle('open');t.setAttribute('aria-expanded',o)});
+  m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{m.classList.remove('open');t.setAttribute('aria-expanded',false)}));
+  document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();document.getElementById('ok').style.display='block'});
+</script>
+</body>
+</html>
